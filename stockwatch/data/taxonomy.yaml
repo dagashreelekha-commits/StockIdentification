@@ -1,0 +1,49 @@
+# Sub-sector -> representative liquid NSE stocks.
+# Symbols are from memory: verify against the NSE list before trading (renames/demergers happen).
+# The LLM may only name tickers that appear here; anything else is discarded.
+sub_sectors:
+  banks_private:   {sector: Financials, name: Private banks, stocks: [HDFCBANK, ICICIBANK, AXISBANK, KOTAKBANK, INDUSINDBK]}
+  banks_psu:       {sector: Financials, name: PSU banks, stocks: [SBIN, BANKBARODA, PNB, CANBK, UNIONBANK]}
+  nbfc:            {sector: Financials, name: NBFCs / lenders, stocks: [BAJFINANCE, CHOLAFIN, SHRIRAMFIN, MUTHOOTFIN, MANAPPURAM]}
+  insurance:       {sector: Financials, name: Insurance, stocks: [SBILIFE, HDFCLIFE, ICICIGI, LICI]}
+  capital_markets: {sector: Financials, name: Exchanges / brokers / AMCs, stocks: [BSE, ANGELONE, CDSL, HDFCAMC, MCX, CAMS]}
+  it_large:        {sector: IT, name: Large-cap IT services, stocks: [TCS, INFY, WIPRO, HCLTECH, TECHM, LTIM]}
+  it_mid:          {sector: IT, name: Mid-cap IT / digital, stocks: [PERSISTENT, COFORGE, MPHASIS]}
+  fintech_internet: {sector: Internet, name: Internet / fintech platforms, stocks: [ETERNAL, SWIGGY, PAYTM, POLICYBZR, NYKAA, INFOEDGE]}
+  gaming_media:    {sector: Internet, name: Gaming / media, stocks: [NAZARA, SUNTV, PVRINOX]}
+  auto_pv:         {sector: Auto, name: Passenger vehicles, stocks: [MARUTI, M&M, HYUNDAI]}
+  auto_2w:         {sector: Auto, name: Two-wheelers, stocks: [BAJAJ-AUTO, HEROMOTOCO, EICHERMOT, TVSMOTOR]}
+  auto_ancillary:  {sector: Auto, name: Auto components, stocks: [BOSCHLTD, MOTHERSON, SONACOMS, UNOMINDA]}
+  ev_battery:      {sector: Auto, name: EV / batteries, stocks: [EXIDEIND, OLAELEC]}
+  fmcg:            {sector: Consumer, name: FMCG, stocks: [HINDUNILVR, ITC, NESTLEIND, BRITANNIA, DABUR, TATACONSUM]}
+  consumer_durables: {sector: Consumer, name: Consumer durables, stocks: [VOLTAS, HAVELLS, BLUESTARCO, DIXON]}
+  paints:          {sector: Consumer, name: Paints, stocks: [ASIANPAINT, BERGEPAINT, KANSAINER, INDIGOPNTS]}
+  retail_jewellery: {sector: Consumer, name: Retail / jewellery, stocks: [TITAN, KALYANKJIL, TRENT, DMART]}
+  hotels_travel:   {sector: Consumer, name: Hotels / travel, stocks: [INDHOTEL, LEMONTREE, CHALET, IRCTC]}
+  textiles:        {sector: Consumer, name: Textiles / apparel (export-heavy), stocks: [KPRMILL, PAGEIND, ARVIND, WELSPUNLIV]}
+  pharma_large:    {sector: Healthcare, name: Pharma (US generics heavy), stocks: [SUNPHARMA, DRREDDY, CIPLA, LUPIN, ZYDUSLIFE]}
+  hospitals:       {sector: Healthcare, name: Hospitals, stocks: [APOLLOHOSP, MAXHEALTH, FORTIS]}
+  cdmo:            {sector: Healthcare, name: CDMO / API, stocks: [DIVISLAB, SYNGENE]}
+  oil_upstream:    {sector: Energy, name: Oil & gas producers, stocks: [ONGC, OIL]}
+  omcs:            {sector: Energy, name: Oil marketing cos, stocks: [IOC, BPCL, HINDPETRO]}
+  gas_cgd:         {sector: Energy, name: Gas / city gas, stocks: [GAIL, IGL, MGL, GUJGASLTD]}
+  reliance:        {sector: Energy, name: Reliance (O2C + retail + telecom), stocks: [RELIANCE]}
+  coal:            {sector: Energy, name: Coal, stocks: [COALINDIA]}
+  power_gen:       {sector: Power, name: Power generation, stocks: [NTPC, TATAPOWER, JSWENERGY, ADANIPOWER]}
+  power_equipment: {sector: Power, name: Power / T&D equipment, stocks: [SIEMENS, ABB, BHEL, CGPOWER]}
+  renewables:      {sector: Power, name: Renewables / solar, stocks: [ADANIGREEN, SUZLON, WAAREEENER, INOXWIND]}
+  power_grid:      {sector: Power, name: Transmission, stocks: [POWERGRID]}
+  defence:         {sector: Industrials, name: Defence & shipyards, stocks: [HAL, BEL, BDL, MAZDOCK, COCHINSHIP, BEML]}
+  railways:        {sector: Industrials, name: Railway infra / PSUs, stocks: [RVNL, IRFC, IRCON, TITAGARH]}
+  capital_goods:   {sector: Industrials, name: Capital goods / EPC, stocks: [LT, CUMMINSIND, POLYCAB, KEI]}
+  ems_electronics: {sector: Industrials, name: Electronics manufacturing, stocks: [DIXON, KAYNES]}
+  cement:          {sector: Materials, name: Cement, stocks: [ULTRACEMCO, AMBUJACEM, SHREECEM, DALBHARAT]}
+  steel:           {sector: Materials, name: Steel, stocks: [TATASTEEL, JSWSTEEL, SAIL, JINDALSTEL]}
+  metals_nonferrous: {sector: Materials, name: Aluminium / copper / zinc, stocks: [HINDALCO, VEDL, NATIONALUM, HINDZINC]}
+  chemicals:       {sector: Materials, name: Specialty chemicals, stocks: [SRF, PIDILITIND, DEEPAKNTR, AARTIIND, NAVINFLUOR]}
+  agri_inputs:     {sector: Agri, name: Fertilisers / agrochemicals, stocks: [CHAMBLFERT, COROMANDEL, UPL, PIIND]}
+  sugar_ethanol:   {sector: Agri, name: Sugar / ethanol, stocks: [BALRAMCHIN, TRIVENI, EIDPARRY]}
+  realty:          {sector: Real estate, name: Real estate developers, stocks: [DLF, GODREJPROP, LODHA, OBEROIRLTY, PRESTIGE]}
+  telecom:         {sector: Telecom, name: Telecom, stocks: [BHARTIARTL, IDEA, INDUSTOWER]}
+  aviation:        {sector: Transport, name: Airlines, stocks: [INDIGO]}
+  logistics_ports: {sector: Transport, name: Ports / logistics, stocks: [ADANIPORTS, CONCOR, DELHIVERY]}

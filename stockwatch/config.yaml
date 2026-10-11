@@ -1,0 +1,38 @@
+model: claude-sonnet-5-5       # any Claude model id; a cheaper one is fine for headline triage
+db_path: data/stockwatch.db
+reports_dir: reports
+lookback_hours: 24             # ignore news older than this
+half_life_hours: 12            # news impact halves every N hours in the ranking
+batch_size: 12                 # headlines per LLM call
+min_confidence: 0.3            # drop LLM impacts below this
+poll_seconds: 300              # for `watch`
+http_timeout: 15
+google_news_weight: 0.7
+
+# Feed URLs rot. `python -m stockwatch run` prints which ones failed; fix or delete them here.
+feeds:
+  - {name: ET Markets,        url: "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms", weight: 1.0}
+  - {name: ET Economy,        url: "https://economictimes.indiatimes.com/news/economy/rssfeeds/1373380680.cms", weight: 1.0}
+  - {name: Mint Markets,      url: "https://www.livemint.com/rss/markets", weight: 1.0}
+  - {name: Business Standard, url: "https://www.business-standard.com/rss/markets-106.rss", weight: 1.0}
+  - {name: Moneycontrol,      url: "https://www.moneycontrol.com/rss/business.xml", weight: 1.0}
+  - {name: BusinessLine,      url: "https://www.thehindubusinessline.com/markets/feeder/default.rss", weight: 1.0}
+  - {name: PIB (govt),        url: "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3", weight: 1.3}
+  - {name: RBI press,         url: "https://rbi.org.in/pressreleases_rss.xml", weight: 1.3}
+  - {name: SEBI,              url: "https://www.sebi.gov.in/sebirss.xml", weight: 1.3}
+
+# Each query becomes a Google News RSS search (India edition, last 24h): catches political/geopolitical news
+# the business feeds miss.
+google_news_queries:
+  - "Union Cabinet approves"
+  - "RBI monetary policy"
+  - "GST Council"
+  - "SEBI circular"
+  - "India tariff OR trade deal"
+  - "India Pakistan OR China border"
+  - "Brent crude India"
+  - "India monsoon IMD"
+  - "India defence ministry contract"
+  - "India government scheme subsidy PLI"
+  - "India rupee dollar"
+  - "Supreme Court India company OR sector"

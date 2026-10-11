@@ -1,0 +1,117 @@
+# Historical India news -> sector reactions, used as few-shot context for the LLM and shown in reports.
+# Direction/sector calls only; I deliberately did NOT write magnitudes except where I'm sure.
+# confidence: certain = well-documented, likely = from memory, verify before relying on it.
+precedents:
+  - id: corp_tax_cut_2019
+    date: 2019-09-20
+    event: Government cuts corporate tax to 22% (15% for new manufacturers)
+    up: [banks_private, banks_psu, auto_pv, realty, fmcg, capital_goods]
+    note: Broad market move; Nifty had its biggest one-day gain in a decade (~5%).
+    confidence: certain
+  - id: demonetisation_2016
+    date: 2016-11-08
+    event: Rs500/1000 notes withdrawn
+    down: [realty, retail_jewellery, auto_2w, nbfc, fmcg]
+    up: [banks_psu]
+    note: Cash-heavy, discretionary and informal-economy-linked sectors sold off; deposits flooded banks.
+    confidence: certain
+  - id: ilfs_default_2018
+    date: 2018-09
+    event: IL&FS defaults on debt
+    down: [nbfc, realty]
+    note: NBFC/HFC liquidity scare; funding-cost-sensitive lenders hit hardest.
+    confidence: certain
+  - id: hindenburg_adani_2023
+    date: 2023-01-24
+    event: Hindenburg report on Adani group
+    down: [power_gen, renewables, logistics_ports, cement, banks_psu]
+    note: Group stocks collapsed; PSU lenders and LIC sold off on exposure fears.
+    confidence: certain
+  - id: rbi_risk_weights_2023
+    date: 2023-11-16
+    event: RBI raises risk weights on unsecured consumer loans and bank loans to NBFCs
+    down: [nbfc, banks_private]
+    note: Regulatory tightening on credit growth hits NBFCs and retail-lending banks.
+    confidence: certain
+  - id: election_result_2024
+    date: 2024-06-04
+    event: General election result far below exit polls
+    down: [banks_psu, defence, railways, power_gen, capital_goods]
+    note: Policy-continuity trades (PSU, infra, defence) crashed intraday, then largely recovered within weeks.
+    confidence: certain
+  - id: budget_capgains_2024
+    date: 2024-07-23
+    event: Union Budget raises STCG/LTCG and F&O STT
+    down: [capital_markets]
+    note: Brokers/exchanges hit by higher transaction costs on derivatives.
+    confidence: likely
+  - id: telecom_tariff_hike_2024
+    date: 2024-06-27
+    event: Jio, Airtel, Vi announce 11-25% mobile tariff hikes
+    up: [telecom]
+    note: ARPU-driven earnings upgrades for the whole sector, Bharti and Vodafone Idea especially.
+    confidence: likely
+  - id: crude_spike_2022
+    date: 2022-02-24
+    event: Russia invades Ukraine, Brent above $100
+    down: [omcs, paints, aviation, auto_2w, chemicals]
+    up: [oil_upstream]
+    note: Crude-input consumers de-rated; producers rerated. Also broad FII selling.
+    confidence: certain
+  - id: covid_lockdown_2020
+    date: 2020-03
+    event: National COVID lockdown
+    up: [pharma_large, it_large, fmcg]
+    down: [aviation, hotels_travel, auto_pv, realty]
+    confidence: certain
+  - id: pli_schemes_2020
+    date: 2020-11
+    event: Cabinet approves PLI for 10 more sectors (electronics, pharma, auto, textiles, etc.)
+    up: [ems_electronics, auto_ancillary, pharma_large]
+    note: Re-rating of beneficiary manufacturers over following months, not one day.
+    confidence: likely
+  - id: ethanol_e20_2021
+    date: 2021-06
+    event: Government advances E20 ethanol blending target to 2025
+    up: [sugar_ethanol]
+    confidence: likely
+  - id: rbi_rate_cuts_2025
+    date: 2025-02-07
+    event: RBI cuts repo rate for the first time in ~5 years; larger cut plus CRR cut in June 2025
+    up: [realty, nbfc, banks_private, auto_pv]
+    note: Rate-sensitive sectors lead; banks can be mixed on margin compression.
+    confidence: likely
+  - id: pahalgam_sindoor_2025
+    date: 2025-05
+    event: Pahalgam attack, then India-Pakistan military escalation (Operation Sindoor)
+    up: [defence]
+    down: [aviation]
+    note: Defence PSUs and shipyards rallied sharply on order-pipeline expectations.
+    confidence: likely
+  - id: real_money_gaming_ban_2025
+    date: 2025-08
+    event: Parliament passes law banning real-money online games
+    down: [gaming_media, fintech_internet]
+    confidence: likely
+  - id: us_tariff_50pct_2025
+    date: 2025-08-27
+    event: US imposes 50% tariff on Indian goods
+    down: [textiles, retail_jewellery, chemicals, auto_ancillary]
+    note: Export-heavy labour-intensive sectors hit; IT services and pharma largely exempt at the time.
+    confidence: likely
+  - id: gst_rationalisation_2025
+    date: 2025-09
+    event: GST Council moves to simplified 5%/18% slabs, effective 22 Sep 2025
+    up: [auto_pv, auto_2w, consumer_durables, cement, fmcg]
+    confidence: likely
+  - id: h1b_fee_2025
+    date: 2025-09-19
+    event: US announces $100k fee on new H-1B petitions
+    down: [it_large, it_mid]
+    confidence: likely
+  - id: us_pharma_tariff_2025
+    date: 2025-09
+    event: US announces tariffs on branded/patented pharma imports
+    down: [pharma_large]
+    note: Impact depends on generic exemption; sector often sold first, clarified later.
+    confidence: likely

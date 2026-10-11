@@ -1,0 +1,11 @@
+[
+ {"title": "RBI cuts repo rate by 25 bps to 5.25%, signals more room to ease", "summary": "Governor says inflation is benign.", "source": "RBI press", "weight": 1.3, "age_hours": 1},
+ {"title": "RBI slashes repo rate by 25 basis points", "summary": "", "source": "Mint Markets", "age_hours": 1.2},
+ {"title": "Brent crude surges past $95 on Middle East supply fears", "summary": "Oil prices jumped 4% overnight.", "source": "ET Markets", "age_hours": 2},
+ {"title": "DAC approves procurement of defence equipment worth Rs 67,000 crore", "summary": "Includes missiles and naval systems.", "source": "PIB (govt)", "weight": 1.3, "age_hours": 3},
+ {"title": "Sensex ends 150 points higher; Nifty holds 25,000", "summary": "Broad-based buying.", "source": "ET Markets", "age_hours": 1},
+ {"title": "US imposes additional tariffs on Indian textile and leather exports", "summary": "", "source": "ET Economy", "age_hours": 5},
+ {"title": "Cabinet approves GST cut on small cars and two-wheelers", "summary": "GST Council reduces rate to 18%.", "source": "PIB (govt)", "weight": 1.3, "age_hours": 4},
+ {"title": "5 stocks to buy today for 10% upside", "summary": "", "source": "Moneycontrol", "age_hours": 1},
+ {"title": "Brent crude falls 3% as demand worries return", "summary": "", "source": "Mint Markets", "age_hours": 20}
+]

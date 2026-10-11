@@ -1,0 +1,114 @@
+# Deterministic rules (optional `precedent:` must exist in precedents.yaml): regex on headline+summary -> impacts. Used when no API key is set,
+# when the LLM call fails, and as a cross-check. direction: up|down, magnitude 1-5.
+triggers:
+  - id: rate_cut
+    precedent: rbi_rate_cuts_2025
+    pattern: '\b(repo rate|policy rate|rbi)\b.*\b(cut|cuts|slashes|lowers|reduces)\b|\b(rate cut)\b'
+    why: Lower rates help rate-sensitive credit and housing demand.
+    impacts: [[realty, up, 3], [nbfc, up, 3], [auto_pv, up, 2], [banks_private, up, 2]]
+  - id: rate_hike
+    pattern: '\b(repo rate|policy rate|rbi)\b.*\b(hike|hikes|raises|increases)\b|\b(rate hike)\b'
+    why: Higher rates raise funding costs and dampen housing/vehicle demand.
+    impacts: [[realty, down, 3], [nbfc, down, 3], [auto_pv, down, 2]]
+  - id: crude_up
+    precedent: crude_spike_2022
+    pattern: '\b(crude|brent|oil prices?)\b.*\b(surge|surges|jump|jumps|spike|spikes|rise|rises|climb|climbs|soar|soars|rally|rallies)\b'
+    why: Higher crude raises input costs for OMCs, paints, aviation, tyres; benefits producers.
+    impacts: [[omcs, down, 3], [paints, down, 3], [aviation, down, 3], [oil_upstream, up, 3]]
+  - id: crude_down
+    pattern: '\b(crude|brent|oil prices?)\b.*\b(fall|falls|drop|drops|slump|slumps|tumble|tumbles|plunge|plunges|ease|eases|decline|declines)\b'
+    why: Lower crude helps importers and crude-linked consumers; hurts producers.
+    impacts: [[omcs, up, 3], [paints, up, 3], [aviation, up, 3], [oil_upstream, down, 2]]
+  - id: defence_orders
+    precedent: pahalgam_sindoor_2025
+    pattern: '\b(defence|defense)\b.*\b(order|orders|contract|procurement|dac|acquisition|indigenisation|indigenization|export)\b|\b(dac approves)\b'
+    why: Defence orders and approvals feed PSU and shipyard order books.
+    impacts: [[defence, up, 3]]
+  - id: border_conflict
+    precedent: pahalgam_sindoor_2025
+    pattern: '\b(border|loc|ceasefire|missile|airstrike|terror attack|military)\b.*\b(india|pakistan|china)\b|\b(india|pakistan|china)\b.*\b(tension|tensions|clash|strike|escalat)'
+    why: Geopolitical escalation lifts defence sentiment and hurts aviation/risk assets.
+    impacts: [[defence, up, 3], [aviation, down, 2]]
+  - id: tariff_us_india
+    precedent: us_tariff_50pct_2025
+    pattern: '\b(tariff|tariffs|duty|duties)\b.*\b(india|indian)\b|\b(india|indian)\b.*\b(tariff|tariffs)\b'
+    why: US tariffs hurt export-heavy labour-intensive sectors first.
+    impacts: [[textiles, down, 3], [retail_jewellery, down, 2], [chemicals, down, 2], [auto_ancillary, down, 2]]
+  - id: trade_deal
+    pattern: '\b(trade deal|trade agreement|fta|free trade)\b.*\b(india|signed|concluded|finalised|finalized|inked|clinched)\b'
+    why: Market-access gains help exporters.
+    impacts: [[textiles, up, 3], [retail_jewellery, up, 2], [chemicals, up, 2], [pharma_large, up, 1]]
+  - id: gst_cut
+    precedent: gst_rationalisation_2025
+    pattern: '\bgst\b.*\b(cut|cuts|reduce|reduced|reduction|lower|slash|slashed|rationali[sz]ation)\b'
+    why: Lower GST lifts demand for consumption-linked categories.
+    impacts: [[auto_pv, up, 3], [auto_2w, up, 3], [consumer_durables, up, 3], [fmcg, up, 2], [cement, up, 2]]
+  - id: monsoon_good
+    pattern: '\b(monsoon)\b.*\b(above[- ]normal|good|strong|surplus|early|bountiful|healthy)\b|\b(imd)\b.*\b(above[- ]normal)\b'
+    why: Good monsoon supports rural demand and agri inputs.
+    impacts: [[agri_inputs, up, 3], [auto_2w, up, 2], [fmcg, up, 2]]
+  - id: monsoon_bad
+    pattern: '\b(monsoon)\b.*\b(deficit|deficient|below[- ]normal|weak|delayed|erratic|drought|el nino)\b|\b(el nino)\b'
+    why: Weak monsoon hurts rural demand and agri inputs.
+    impacts: [[agri_inputs, down, 3], [auto_2w, down, 2], [fmcg, down, 2]]
+  - id: ethanol
+    precedent: ethanol_e20_2021
+    pattern: '\b(ethanol)\b.*\b(blending|price|procurement|diversion|msp)\b|\b(sugar)\b.*\b(export|msp|minimum selling price)\b'
+    why: Ethanol/sugar policy feeds directly into sugar-mill earnings.
+    impacts: [[sugar_ethanol, up, 3]]
+  - id: telecom_tariff
+    precedent: telecom_tariff_hike_2024
+    pattern: '\b(tariff|tariffs)\b.*\b(hike|hikes|raise|raises|increase)\b.*\b(jio|airtel|vodafone|vi|telecom|mobile)\b|\b(jio|airtel|vodafone idea)\b.*\b(tariff)\b.*\b(hike|increase|raise)'
+    why: Tariff hikes lift ARPU and earnings across the sector.
+    impacts: [[telecom, up, 4]]
+  - id: rail_orders
+    pattern: '\b(railway|railways|rail)\b.*\b(order|orders|capex|tender|wagon|vande bharat|kavach|electrification)\b'
+    why: Railway capex and orders flow to rail PSUs and component makers.
+    impacts: [[railways, up, 3]]
+  - id: renewable_policy
+    pattern: '\b(solar|renewable|green hydrogen|alm[mz]|wind)\b.*\b(scheme|subsidy|pli|mandate|target|auction|tender|policy)\b'
+    why: Policy support lifts renewables and power-equipment order visibility.
+    impacts: [[renewables, up, 3], [power_equipment, up, 2]]
+  - id: it_visa_or_us_slowdown
+    precedent: h1b_fee_2025
+    pattern: '\b(h-?1b|visa)\b.*\b(fee|curb|restrict|cap|ban)\b|\b(us)\b.*\b(recession|slowdown)\b.*\b(it|tech|software)\b'
+    why: US visa/slowdown risk hits offshore IT services revenue and costs.
+    impacts: [[it_large, down, 3], [it_mid, down, 3]]
+  - id: rupee_weak
+    pattern: '\b(rupee)\b.*\b(falls?|slumps?|weakens?|hits record low|all-time low|depreciat)\b'
+    why: Weaker rupee helps exporters, hurts import-heavy sectors.
+    impacts: [[it_large, up, 2], [pharma_large, up, 2], [omcs, down, 2], [aviation, down, 2]]
+  - id: pharma_us_fda
+    pattern: '\b(usfda|fda)\b.*\b(warning letter|import alert|observations|form 483|ban)\b'
+    why: FDA action on a plant is a stock-specific risk, flagged at sector level for the affected names.
+    impacts: [[pharma_large, down, 2]]
+  - id: sebi_derivatives_curbs
+    precedent: budget_capgains_2024
+    pattern: '\b(sebi)\b.*\b(f&o|derivative|derivatives|options|expiry|lot size|margin|stt)\b|\b(stt)\b.*\b(hike|increase|raise)'
+    why: Tighter derivatives rules cut volumes for brokers and exchanges.
+    impacts: [[capital_markets, down, 3]]
+  - id: sebi_easing
+    pattern: '\b(sebi)\b.*\b(eases|relaxes|liberali[sz]es|approves)\b.*\b(norms|rules|framework)\b'
+    why: Easing market rules is mildly positive for volumes and capital-markets intermediaries.
+    impacts: [[capital_markets, up, 2]]
+  - id: infra_capex
+    pattern: '\b(capex|capital expenditure|infrastructure)\b.*\b(boost|hike|increase|raises|allocation|outlay|lakh crore)\b'
+    why: Public capex feeds EPC, cement and steel demand.
+    impacts: [[capital_goods, up, 3], [cement, up, 2], [steel, up, 2], [railways, up, 2]]
+  - id: steel_safeguard
+    pattern: '\b(steel)\b.*\b(safeguard|anti-dumping|import duty|dumping)\b'
+    why: Protection from cheap imports supports domestic steel realisations.
+    impacts: [[steel, up, 3]]
+  - id: real_estate_policy
+    pattern: '\b(real estate|housing|stamp duty|rera|affordable housing)\b.*\b(scheme|relief|cut|boost|incentive|subsidy)\b'
+    why: Housing-demand support lifts developers and building materials.
+    impacts: [[realty, up, 3], [cement, up, 1]]
+  - id: gaming_ban
+    precedent: real_money_gaming_ban_2025
+    pattern: '\b(online gaming|real[- ]money gaming|fantasy sports)\b.*\b(ban|bill|curb|crackdown|tax)\b'
+    why: Regulatory crackdown hits gaming platforms.
+    impacts: [[gaming_media, down, 4], [fintech_internet, down, 1]]
+  - id: gold_price_up
+    pattern: '\b(gold)\b.*\b(record|all-time high|surges?|jumps?|rally|rallies)\b'
+    why: Gold-loan lenders gain on collateral value; jewellers face demand/margin pressure.
+    impacts: [[nbfc, up, 1], [retail_jewellery, down, 1]]
