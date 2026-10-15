@@ -1,2 +1,6 @@
 requests>=2.31
 PyYAML>=6.0
+# Price data: either or both are optional at runtime; the broker auto-detects.
+# yfinance works everywhere; kiteconnect needs KITE_API_KEY + KITE_ACCESS_TOKEN env vars.
+yfinance>=0.2.40
+kiteconnect>=5.0.0  ; python_version >= "3.9"

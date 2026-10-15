@@ -9,6 +9,21 @@ poll_seconds: 300              # for `watch`
 http_timeout: 15
 google_news_weight: 0.7
 
+# ---- price-aware momentum pipeline ----
+ideas_dir: reports/ideas
+alert_min_confidence: 60       # Telegram pager drops anything below this
+paper_min_confidence: 65       # paper book opens trades above this
+momentum:
+  min_vol_ratio: 1.5           # today's volume vs 20d avg
+  max_dist_52w: 0.15           # keep breakouts within 15% of 52w high
+gatekeeper:
+  min_sharpe: 1.0
+  max_drawdown: 0.20
+  min_win_rate: 0.50
+  min_t_stat: 2.0
+  min_trades: 30
+  min_oos_sharpe_ratio: 0.5
+
 # Feed URLs rot. `python -m stockwatch run` prints which ones failed; fix or delete them here.
 feeds:
   - {name: ET Markets,        url: "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms", weight: 1.0}
