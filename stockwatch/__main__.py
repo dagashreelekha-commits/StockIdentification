@@ -2,7 +2,7 @@ import argparse
 
 from .pipeline import load_config, run_once, watch
 from .strategy_cli import (
-    cmd_alert, cmd_backtest, cmd_fetch, cmd_paper_open, cmd_paper_summary, cmd_scan,
+    cmd_alert, cmd_backtest, cmd_fetch, cmd_nightly, cmd_paper_open, cmd_paper_summary, cmd_scan,
 )
 
 
@@ -12,6 +12,8 @@ def main() -> None:
         "run", "watch",                     # news pipeline (existing)
         "fetch", "scan", "backtest",        # price pipeline
         "alert", "paper-open", "paper-summary",
+        "nightly",                          # fetch+scan+alert+paper-open in one go
+        "kite-login",                       # refresh daily Kite access token
     ])
     p.add_argument("--engine", choices=["auto", "llm", "rules"], default="auto")
     p.add_argument("--config")
@@ -39,6 +41,11 @@ def main() -> None:
         print(cmd_paper_open(cfg, idea_id=a.idea_id))
     elif a.command == "paper-summary":
         print(cmd_paper_summary(cfg))
+    elif a.command == "nightly":
+        print(cmd_nightly(cfg, dry_run=a.dry_run))
+    elif a.command == "kite-login":
+        from .kite_login import main as kite_main
+        kite_main()
 
 
 main()

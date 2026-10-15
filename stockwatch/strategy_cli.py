@@ -122,3 +122,14 @@ def cmd_paper_summary(cfg: dict) -> str:
     return (f"Paper book: {s['n']} closed, win rate {s['win_rate']:.1%}, "
             f"avg {s['avg_ret']:.2%}, cumulative {s['total_ret']:.2%}; "
             f"{len(open_pos)} open positions.")
+
+
+def cmd_nightly(cfg: dict, dry_run: bool = False) -> str:
+    """One-shot: fetch -> scan -> alert -> paper-open. Safe to run daily after market close."""
+    lines = ["=== NIGHTLY RUN ==="]
+    lines.append(cmd_fetch(cfg))
+    lines.append(cmd_scan(cfg))
+    lines.append(cmd_alert(cfg, dry_run=dry_run))
+    lines.append(cmd_paper_open(cfg))
+    lines.append(cmd_paper_summary(cfg))
+    return "\n\n".join(lines)
